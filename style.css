@@ -1,95 +1,196 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+/* Global styles */
+* {
+  padding: 0;
   margin: 0;
-  background-color: #e9e6e6;
-  padding: 20px;
   box-sizing: border-box;
 }
 
-.container {
-  text-align: center;
-  max-width: 90%;
-  margin: auto;
+html {
+  font-size: 62.5%; /* 1rem = 10px */
 }
 
-/* iPhone 15 Pro Frame */
-.iphone-frame {
-  width: 350px; /* Standard width for iPhone 15 Pro */
-  height: 700px; /* Standard height for iPhone 15 Pro */
-  background-color: #000;
-  border-radius: 40px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+body {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  line-height: 1;
+  background-color: #141414;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 120rem;
+  padding: 2rem;
+}
+
+.profile-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+/* changes i made */
+
+.profile-item {
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all 0.3s ease-in;
   position: relative;
 }
 
-.screen {
-  width: 100%;
-  height: 100%;
-  background-color: #fffffff1;
-  border-radius: 35px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.profile-item:hover {
+  box-shadow: 0 0 0 2px #fff;
 }
 
-.notch {
-  width: 210px;
-  height: 30px;
-  background-color: #000;
-  border-radius: 0 0 15px 15px; /* Curved bottom corners */
-  position: absolute;
-  top: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-
-
-
-
-
-/* Jumping cat styles */
-#fortune-cookie {
-  width: 180px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  border-radius: 0.25rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-#fortune-cookie:hover {
+.profile-item:hover .profile-img {
   transform: scale(1.1);
 }
 
-#fortune {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ff69b4;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+.profile-item:active .profile-img {
+  border: 3px solid #fff;
 }
 
-/* Responsive styles */
-@media (max-width: 600px) {
-  #fortune-cookie {
-    width: 150px;
+.profile-link {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+  text-decoration: none;
+  color: #e5e5e5;
+  font-family: inherit;
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.profile-img {
+  width: 100%;
+  border: 3px solid transparent;
+  border-radius: 15px;
+  transition: border 0.3s ease, transform 0.3s ease;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: grey;
+  font-size: 2rem;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid grey;
+  padding: 1.5rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    column-gap: 2rem;
   }
 
-  #fortune {
-    font-size: 16px;
+  .profile-link {
+    font-size: 1.8rem;
   }
 
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  .btn {
+    font-size: 1.8rem;
+    padding: 1.2rem 1.6rem;
   }
 }
+
+@media (max-width: 480px) {
+  html {
+    font-size: 50%;
+  }
+
+  .profile-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    column-gap: 1.5rem;
+  }
+
+  .profile-link {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    font-size: 1.6rem;
+    padding: 1rem 1.2rem;
+  }
+}
+
+/* Ticker Styles */
+@-webkit-keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.ticker-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 10rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+.ticker {
+  display: inline-block;
+  height: 100%;
+  line-height: 10rem;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-name: ticker;
+  animation-name: ticker;
+  -webkit-animation-duration: 50s; /* Adjust duration for a smoother loop */
+  animation-duration: 50s;
+  font-family: 'Merriweather', serif; /* Old-style font */
+}
+
+.ticker__item {
+  display: inline-block;
+  padding: 0 2rem;
+  font-size: 2rem;
+  color: white;
+}
+
+
+
